@@ -1,6 +1,6 @@
 export const environment = {
-  production: false,
-  apiUrl: 'http://localhost:8080',
+  production: true,
+  apiUrl: 'https://el-backend-desplegado.com/admin',
   cloudinary: {
     cloudName: 'dwns2alhc',
     uploadPreset: 'oneTry'
