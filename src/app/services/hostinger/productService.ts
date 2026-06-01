@@ -18,10 +18,9 @@ export class ProductService {
   private apiUrl = environment.apiUrl + '/Products/getProducts';
 
   getProducts(): Observable<CardProductDto[]> {
-    console.log('Fetching products from API:', this.apiUrl);
     const headers = new HttpHeaders({
       'ngrok-skip-browser-warning': 'true'
     });
-    return this.http.get<CardProductDto[]>(this.apiUrl);
+    return this.http.get<CardProductDto[]>(this.apiUrl, { headers });
   }
 }
