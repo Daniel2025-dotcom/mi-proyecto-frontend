@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://wholehearted-elvin-persuadedly.ngrok-free.dev',
+  apiUrl: 'localhost:8080',
   cloudinary: {
     cloudName: 'dwns2alhc',
     uploadPreset: 'oneTry'
