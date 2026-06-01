@@ -15,7 +15,6 @@ export class PdfService {
       'ngrok-skip-browser-warning': 'true'
     });
 
-    // Pasamos tanto los headers como el responseType
     return this.http.get(this.apiUrl, { headers, responseType: 'blob' });
   }
 }
