@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environment/environment';
 
@@ -11,6 +11,11 @@ export class PdfService {
   private apiUrl = environment.apiUrl + '/admin/catalog/pdf';
 
   downloadCatalogPdf(): Observable<Blob> {
-    return this.http.get(this.apiUrl, { responseType: 'blob' });
+    const headers = new HttpHeaders({
+      'ngrok-skip-browser-warning': 'true'
+    });
+
+    // Pasamos tanto los headers como el responseType
+    return this.http.get(this.apiUrl, { headers, responseType: 'blob' });
   }
 }

@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environment/environment';
 
@@ -15,11 +15,13 @@ export interface LoginResponseDto {
   providedIn: 'root'
 })
 export class LoginService {
-
   private http = inject(HttpClient); 
   private apiUrl = environment.apiUrl + '/login';
 
   userValidator(loginUserDto: LoginUserDto): Observable<LoginResponseDto> {
-    return this.http.post<LoginResponseDto>(`${this.apiUrl}/validator`, loginUserDto);
+    const headers = new HttpHeaders({
+      'ngrok-skip-browser-warning': 'true'
+    });
+    return this.http.post<LoginResponseDto>(`${this.apiUrl}/validator`, loginUserDto, { headers });
   }
 }
