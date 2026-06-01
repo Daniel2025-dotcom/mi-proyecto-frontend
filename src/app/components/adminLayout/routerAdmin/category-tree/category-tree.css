@@ -1,0 +1,82 @@
+.tree {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  -webkit-user-select: none;
+  user-select: none; 
+}
+
+.children-container {
+  padding-left: 20px;
+  margin-left: 10px;
+  border-left: 1px dashed #cbd5e1;
+}
+
+.tree-node {
+  margin: 4px 0;
+}
+
+.tree-item {
+  display: flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #334155;
+}
+
+.tree-item:hover {
+  background-color: #f1f5f9;
+  color: #0f172a;
+}
+
+.arrow-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-right: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.arrow-btn:hover {
+  background-color: #e2e8f0;
+}
+
+.arrow-icon {
+  font-size: 10px;
+  color: #64748b;
+  transition: transform 0.2s ease;
+  display: inline-block;
+}
+
+.arrow-icon.is-expanded {
+  transform: rotate(90deg);
+  color: #475569;
+}
+
+.leaf-icon {
+  margin-right: 6px;
+  width: 20px;
+  text-align: center;
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+.folder-icon {
+  margin-right: 8px;
+  font-size: 15px;
+}
+.node-name {
+  font-size: 14px;
+  font-weight: 500;
+  margin-left: 2px;
+}

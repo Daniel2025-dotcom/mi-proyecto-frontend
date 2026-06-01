@@ -1,0 +1,31 @@
+<div id="layout">
+    <div class="left">
+        <button>
+            <img src="/assets/0704235.jpg" alt="logoBuisness">
+        </button>
+        <button class="buttonCP">
+            <span class="material-symbols-outlined">Location_on</span>
+            <span>Ingresa tu CP</span>
+        </button>
+    </div>
+
+    <div class="center">
+        <app-search></app-search>
+    </div>
+
+    <div class="right" id="LayoutButtons">
+        <button>
+            <span class="material-symbols-outlined">favorite</span>
+        </button>
+        <button id="specialButton" >
+            <span class="material-symbols-outlined">shopping_cart</span>
+            <span class="material-symbols-outlined">arrow_drop_down</span>
+        </button>
+
+        <button (click)="toggleLogin()" class="buttonCP">
+            <span class="material-symbols-outlined">account_circle</span>
+            <span id="spanSpecial">Ingresar</span>
+        </button>
+        <app-login *ngIf="showLogin"></app-login> <!--Impoertante esto es distinto al display none , aqui en verdad se crea y elimina del dom-->
+    </div>
+</div>

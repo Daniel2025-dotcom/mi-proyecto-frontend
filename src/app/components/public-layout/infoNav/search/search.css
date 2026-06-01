@@ -1,0 +1,24 @@
+#layoutSearch {
+    background: rgb(227, 227, 227);
+    margin: 0px;
+    border: 0px;
+    display: flex;
+    gap: 3rem;
+    padding: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+h1,p{
+    margin: 0px;
+} /* el h1 no se aplico al componente interno , ojo*/
+#layoutSearch input {
+    background: transparent;
+    border: none;
+    outline: none;
+}
+#layoutSearch input::placeholder {
+    color: #555; /* gris más oscuro */
+}
+#layoutSearch span {
+    font-size: 15px;
+}

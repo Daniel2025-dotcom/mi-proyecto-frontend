@@ -1,0 +1,22 @@
+<div class="general">
+    <div class="templateForm" >
+        <div class="headerForm">
+            <span class="material-symbols-outlined">account_circle</span>
+        </div>
+                <form class="messi" [formGroup]="form">
+                <h3>Ingrese su Email:</h3>
+                <input
+                    type="text"
+                    placeholder="example:juandanielgerbacio@gmail.com"
+                    formControlName="email">
+                <h3>Ingrese su Contraseña:</h3>
+                <input
+                    type="text"
+                    placeholder="example:Pepito777"
+                    formControlName="password">
+                </form>
+        <div class="actions">
+                <button (click)="tryLoggin()">Sign in</button>
+        </div>
+    </div>
+</div>

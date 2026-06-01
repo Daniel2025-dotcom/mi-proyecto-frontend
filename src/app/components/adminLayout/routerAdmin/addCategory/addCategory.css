@@ -1,0 +1,201 @@
+.generalLayout{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 2rem 1rem;
+    box-sizing: border-box;
+}
+
+.cardCategory{
+    width: 100%;
+    max-width: 850px;
+    background: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-sizing: border-box;
+    border: 1px solid rgb(230,230,230);
+    box-shadow:
+        0 4px 10px rgba(0,0,0,0.08);
+}
+
+.headerCard{
+    margin-bottom: 2rem;
+}
+
+.headerCard h2{
+    margin: 0;
+
+    font-size: 2rem;
+}
+
+.headerCard p{
+    margin-top: 0.6rem;
+
+    color: gray;
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+
+    gap: 1.5rem;
+}
+
+.section{
+    display: flex;
+    flex-direction: column;
+
+    gap: 0.7rem;
+}
+
+.sectionTitle{
+    font-weight: 600;
+
+    font-size: 0.95rem;
+}
+
+.treeContainer{
+    border: 1px solid rgb(220,220,220);
+
+    border-radius: 0.8rem;
+
+    background: rgb(248,248,248);
+
+    padding: 1rem;
+
+    max-height: 350px;
+
+    overflow-y: auto;
+}
+
+.selectedPath{
+    display: flex;
+    align-items: center;
+
+    gap: 0.7rem;
+
+    background: rgb(245,247,255);
+
+    border: 1px solid rgb(210,220,255);
+
+    padding: 1rem;
+
+    border-radius: 0.8rem;
+
+    color: rgb(60,60,60);
+}
+
+.selectedPath span{
+    color: rgb(88,101,242);
+}
+
+.selectedPath p{
+    margin: 0;
+
+    word-break: break-word;
+}
+
+.section input{
+    width: 100%;
+
+    border: 1px solid rgb(210,210,210);
+
+    border-radius: 0.7rem;
+
+    padding: 0.9rem 1rem;
+
+    font-size: 1rem;
+
+    box-sizing: border-box;
+
+    outline: none;
+
+    transition: 0.2s;
+}
+
+.section input:focus{
+    border-color: rgb(88,101,242);
+
+    box-shadow:
+        0 0 0 4px rgba(88,101,242,0.12);
+}
+
+.actions{
+    display: flex;
+
+    justify-content: end;
+
+    gap: 1rem;
+
+    margin-top: 1rem;
+}
+
+.actions button{
+    border: none;
+
+    border-radius: 0.8rem;
+
+    padding: 0.9rem 1.2rem;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+
+    gap: 0.5rem;
+
+    font-size: 0.95rem;
+
+    font-weight: 600;
+
+    transition: 0.2s;
+}
+
+.primaryButton{
+    background: rgb(25,135,84);
+
+    color: white;
+}
+
+.secondaryButton{
+    background: rgb(88,101,242);
+
+    color: white;
+}
+
+.actions button:hover{
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 5px 12px rgba(0,0,0,0.12);
+}
+
+@media (max-width: 768px){
+
+    .cardCategory{
+        padding: 1.2rem;
+    }
+
+    .actions{
+        flex-direction: column;
+    }
+
+    .actions button{
+        width: 100%;
+        justify-content: center;
+    }
+
+}
+
+.modal-contenedor {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro transparente */
+  justify-content: center;
+  align-items: center;
+}

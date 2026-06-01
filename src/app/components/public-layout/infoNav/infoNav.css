@@ -1,0 +1,80 @@
+#layout {
+    background: white;
+    margin: 0px;
+    border: 0px;
+    height: 4.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* separa izquierda y derecha */
+    max-width: 1000px; 
+    margin: 0 auto;
+    padding: 0 1rem;  /* para que el contenido no se pegue a los bordes */
+}
+h1,p{
+    margin: 0px;
+    white-space: nowrap;
+} /* el h1,p,div traen margin por defecto */
+button{
+    background: white;
+    border: 0px;
+    cursor: pointer;
+}
+
+
+.left {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    overflow: hidden; /* 🔥 recorta lo que sobresale */
+}
+.left img {
+    display: block;
+    width: auto;
+    height: 4rem;
+    max-width: 100%;
+}
+
+.center {
+    flex: 1;
+    display: flex;
+    justify-content: center; /* centra el search */
+}
+
+.right {
+    display: flex;
+}
+.right button:hover span {
+    color: red;
+}
+.buttonCP {
+    display: flex;  
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem; /* espacio entre el texto y el icono */
+}
+.left button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem; /* espacio entre el texto y el icono */
+}
+.right span {
+    font-size: 15px;
+}
+#spanSpecial{
+    font-size: 15px;
+}
+.buttonCP span {
+    position: relative;
+    top: -1.2px; /* que carajo! */
+}
+#specialButton {
+    background: rgb(227,227,227);
+    padding: 0.4rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: 3px;
+}
+

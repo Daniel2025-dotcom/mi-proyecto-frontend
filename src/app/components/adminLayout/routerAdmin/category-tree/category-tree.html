@@ -1,0 +1,28 @@
+<ul class="tree">
+  @for (categoria of categories; track categoria.id) {
+    <li class="tree-node">
+      <div class="tree-item" (click)="selectCategory(categoria.nombre, categoria.id)">
+        
+        @if (categoria.hijos && categoria.hijos.length > 0) {
+          <button type="button" (click)="$event.stopPropagation(); toggle(categoria.id)" class="arrow-btn">
+            <span class="arrow-icon" [class.is-expanded]="isExpanded(categoria.id)">▶</span>
+          </button>
+        } @else {
+          <span class="leaf-icon">•</span>
+        }
+
+        <span class="material-symbols-outlined">folder_Data</span>
+        <span class="node-name">{{ categoria.nombre }}</span>
+      </div>
+
+      @if (categoria.hijos && categoria.hijos.length > 0 && isExpanded(categoria.id)) {
+        <div class="children-container">
+          <app-category-tree 
+            [categories]="categoria.hijos" 
+            (categorySelected)="categorySelected.emit($event)">
+          </app-category-tree>
+        </div>
+      }
+    </li>
+  }
+</ul>

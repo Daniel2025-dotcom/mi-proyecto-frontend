@@ -1,0 +1,103 @@
+<div class="general">
+  <div class="layoutTemplate">
+    <div class="headerForm">
+      <h2>Carga de Producto</h2>
+      <p>Completá la información del producto</p>
+    </div>
+    <form [formGroup]="form">
+      <div class="gridForm">
+        <div class="container">
+          <label>Nombre del Producto</label>
+          <input
+            type="text"
+            placeholder="Ej: Mate Imperial"
+            formControlName="name"
+          >
+        </div>
+        <div class="container">
+          <label>Descripción</label>
+          <textarea
+            rows="5"
+            placeholder="Descripción del producto..."
+            formControlName="description"
+          ></textarea>
+          <div id="special" class="container">
+          <label>Precio del Producto</label>
+          <input
+            type="text"
+            placeholder="Ej: $4000"
+            formControlName="price"
+          >
+        </div>
+        </div>
+        <div class="container">
+          <label>Categoría</label>
+          <div class="categoryBox">
+            <app-category-tree
+              [categories]="(categories$ | async) || []"
+              (categorySelected)="onRutaSeleccionada($event)">
+            </app-category-tree>
+          </div>
+        </div>
+        <div class="section">
+          <label class="sectionTitle">
+            Ruta Seleccionada
+          </label>
+          <div class="selectedPath">
+            <span class="material-symbols-outlined">
+              folder_open
+            </span>
+            <p>
+              {{ rutaEscogida || 'Ninguna categoría seleccionada' }}
+            </p>
+          </div>
+        </div>
+        <div class="container">
+          <label for="imagen">Imagen del Producto</label>
+          <div class="previewImage">
+            @if (!previewUrl && !isUploading){
+              <div class="placeholderImage">
+                <span class="material-symbols-outlined">
+                  image
+                </span>
+                <p>Vista previa</p>
+              </div>
+            }
+            @if(previewUrl){
+              <img
+                [src]="previewUrl"
+                alt=""
+              >
+            }
+            @if(isUploading){
+              <div class="loaderContainer">
+                <div class="loader"></div>
+                <span>
+                  Cargando imagen...
+                </span>
+              </div>
+            }
+          </div>
+            <div class="uploadActions">
+              <label class="customFileInput" for="imagen">
+                Seleccionar Imagen
+              </label>
+              <input
+                id="imagen"
+                type="file"
+                (change)="onFileChange($event)"
+              >
+              <span class="fileName">
+                    {{ selectedFileName }}
+                </span>
+            </div>
+          </div>
+        </div>
+      <div class="actions">
+        <button (click)="handleSubmit()">
+          Guardar Producto
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

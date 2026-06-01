@@ -1,0 +1,71 @@
+<div class="generalLayout">
+  <div class="cardCategory">
+    <div class="headerCard">
+      <h2>Gestión de Categorías</h2>
+      <p>
+        Creá nuevas categorías o agregá subcategorías dentro de una ruta existente.
+      </p>
+    </div>
+    <form [formGroup]="form">
+      <div class="content">
+        <div class="section">
+          <label class="sectionTitle">
+            Árbol de Categorías
+          </label>
+          <div class="treeContainer">
+            <app-category-tree
+              [categories]="(categories$ | async) || []"
+              (categorySelected)="onRutaSeleccionada($event)">
+            </app-category-tree>
+          </div>
+        </div>
+        <div class="section">
+          <label class="sectionTitle">
+            Ruta Seleccionada
+          </label>
+          <div class="selectedPath">
+            <span class="material-symbols-outlined">
+              folder_open
+            </span>
+            <p>
+              {{ rutaEscogida || 'Ninguna categoría seleccionada' }}
+            </p>
+          </div>
+        </div>
+        <div class="section">
+          <label class="sectionTitle">
+            Nombre
+          </label>
+          <input
+            type="text"
+            placeholder="Ej: Accesorios para Cocina"
+            formControlName="categoryName"
+          >
+        </div>
+
+        <div class="actions">
+          <button
+            type="button"
+            class="secondaryButton"
+            (click)="handleSubmit()"
+            >
+            <span class="material-symbols-outlined">
+              create_new_folder
+            </span>
+            Crear Subcategoría
+          </button>
+          <button
+            type="button"
+            class="primaryButton"
+            (click)="setParent()"
+          >
+            <span class="material-symbols-outlined">
+              add
+            </span>
+            Crear Categoría
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
