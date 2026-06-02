@@ -1,0 +1,11 @@
+<div class="general">
+    <div class="products">
+        @if (products$ | async; as products) {
+            @for (item of products; track item.id) {
+            <app-productUser [dateProducts]="item"></app-productUser>
+    }
+
+}
+
+    </div>
+</div>

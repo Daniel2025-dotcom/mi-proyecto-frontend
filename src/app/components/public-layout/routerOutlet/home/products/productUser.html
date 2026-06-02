@@ -1,0 +1,16 @@
+<div class="card-product">
+  <div class="image-container">
+    <img [src]="dateProducts.url || 'https://placehold.co/200'" [alt]="dateProducts.name" alt="none">
+  </div>
+
+  <div class="info">
+    <h3>{{ dateProducts.name }}</h3>
+    <span class="price">${{ dateProducts.price }}</span>
+
+    <div class="actions">
+      <button class="btn btn-modify" (click)="onConsult()">
+        Consultar Por este Producto
+      </button>
+    </div>
+  </div>
+</div>

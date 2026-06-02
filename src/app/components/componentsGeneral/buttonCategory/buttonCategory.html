@@ -1,0 +1,12 @@
+<div class="menu-container">
+  <button class="menu-button">
+    <span class="material-symbols-outlined">
+      Menu
+    </span>
+    Categorías <span class="arrow">▼</span>
+  </button>
+
+  <ul class="dropdown-menu" *ngIf="categories.length > 0">
+    <app-menu-nodes [nodes]="categories"></app-menu-nodes>
+  </ul>
+</div>

@@ -1,0 +1,36 @@
+.general {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  gap: 1rem;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  width: 100%;
+  z-index: 100;  
+}
+.GeneralContent {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  background: rgb(227,227,227);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  background: rgb(227,227,227);
+}
+@media (max-width: 768px) {
+  .header {
+    position: static;
+  }
+}

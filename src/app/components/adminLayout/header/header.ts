@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SearchComponent } from '../../public-layout/infoNav/search/search';
+import { SearchComponent } from '../../adminLayout/header/search/serach';
 import { RouterModule } from '@angular/router';
 import { PdfService } from '../../../services/hostinger/pdfservice';
 import { inject } from '@angular/core';
