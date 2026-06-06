@@ -18,6 +18,6 @@ export class ProductComponentUser {
   @Input({ required: true }) dateProducts!: CardProductDto; 
 
   onConsult() {
-    alert("aun falta implementar la funcionalidad");
+    console.log("aun falta implementar la funcionalidad");
  }
 }

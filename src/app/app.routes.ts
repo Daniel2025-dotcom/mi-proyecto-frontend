@@ -11,12 +11,11 @@ import { HomeComponentUser } from './components/public-layout/routerOutlet/home/
 export const routes: Routes = [
 
     {
-        path: '',component: PublicLayoutComponent,
-
+        path: '', 
+        component: PublicLayoutComponent,
         children: [
             { path: '', component: HomeComponentUser },
-            { path: 'celulares', component: ResultFilterComponent }
-
+            { path: 'productos/**', component: ResultFilterComponent }
         ]
     },
     {

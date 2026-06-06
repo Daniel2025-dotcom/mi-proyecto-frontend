@@ -20,7 +20,7 @@ export class ButtonCategoryComponent implements OnInit {
         this.categories = data;
       },
       error: (err) => {
-        console.error('Error al cargar categorías', err);
+        console.error('Error al cargar categorías');
       }
     });
   }

@@ -16,6 +16,7 @@
   cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 8px;
   width: 100%;
   height: 100%;
@@ -23,15 +24,16 @@
 }
 
 .menu-button:hover {
-  background-color: #0056b3;
+  background-color:white
 }
 
 .dropdown-menu {
+  border-bottom: 1px solid transparent;
   display: none;
   position: absolute;
   top: 100%;
   left: 0;
-  background-color: #ffffff;
+  background-color: rgb(227, 227, 227);
   min-width: 220px;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
   padding: 0;
@@ -44,6 +46,7 @@
 
 .menu-container:hover .dropdown-menu {
   display: block;
+  border-top: 1px solid rgb(227, 227, 227);
 }
 
 .menu-item {
@@ -72,7 +75,7 @@
 }
 
 .item-content:hover a {
-  color: #007bff;
+  text-decoration: underline;
 }
 
 .sub-arrow {
@@ -87,7 +90,7 @@
   position: absolute;
   top: 0; 
   left: 100%;
-  background-color: #ffffff;
+  background-color: rgb(227, 227, 227);
   min-width: 220px;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
   padding: 0;
@@ -99,4 +102,10 @@
 }
 .menu-item:hover > .submenu {
   display: block;
+}
+.divContent{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
 }
