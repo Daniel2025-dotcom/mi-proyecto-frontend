@@ -1,50 +1,42 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router'; // <--- Inyectamos Router también
-import { ProductService } from '../../../../services/hostinger/productService';
-
+import { Component, OnInit, inject, ChangeDetectorRef } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { CardProductDto, ProductService , ProductByCategoryRequestDTO} from '../../../../services/hostinger/productService';
+import { AsyncPipe } from '@angular/common';
+import { Observable } from 'rxjs/internal/Observable';
+import { catchError ,of} from 'rxjs';
+import { ProductComponentUser } from '../home/products/productUser';
+import { ProductComponent } from '../home/products/product';
 @Component({
   selector: 'app-result-filter',
-  standalone: true, // No olvides el standalone si estás usándolo así
-  template: `
-    <div class="contenedor">
-      <h2>Estás en el camino: {{ urlCompleta }}</h2>
-      <p>Categoría final a buscar: <strong>{{ categoriaFinal }}</strong></p>
-    </div>
-  `
+  standalone: true,
+  imports: [CommonModule, AsyncPipe, ProductComponentUser, ProductComponent],
+  templateUrl: './resultFilter.html',
+  styleUrls: ['./resultFilter.css']
 })
 export class ResultFilterComponent implements OnInit {
   private route = inject(ActivatedRoute);
-  private router = inject(Router); // <--- Inyectamos el Router de forma oficial
+  private router = inject(Router); 
   private productService = inject(ProductService);
-
-  urlCompleta: string = '';
-  categoriaFinal: string = '';
+  products$!: Observable<CardProductDto[]>;
+  isAdmin: boolean = false;
 
   ngOnInit(): void {
-    // Escuchamos los cambios de la URL a través de la ruta activa
-    this.route.url.subscribe(() => {
-      // Usamos router.url que es la forma pública y segura de leer la barra de direcciones
-      const urlReal = this.router.url; 
-      
-      // Separamos la URL por barras limpiamente
-      const urlSegmentos = urlReal.split('/'); 
-      
-      // Ahora TypeScript sabe que 'seg' es un string sin que se lo digas
-      const caminoFiltrado = urlSegmentos.filter((seg: string) => seg !== '' && seg !== 'productos');
-      
-      this.urlCompleta = caminoFiltrado.join(' > '); // Resultado visual limpio: "celulares > apple"
-      
-      // Obtenemos el último elemento del camino
-      this.categoriaFinal = caminoFiltrado[caminoFiltrado.length - 1];
+    this.isAdmin = this.router.url.includes('/admin');
+    this.route.queryParams.subscribe(params => {
+      const categoryId = params['id'];
+      const requestId: ProductByCategoryRequestDTO = {
+        id: parseInt(categoryId)
+      };
 
-      if (this.categoriaFinal) {
-        this.cargarProductos(this.categoriaFinal);
-      }
+      this.products$ = this.productService
+        .getProductsByCategory(requestId)
+        .pipe(
+          catchError(err => {
+            console.warn('[ProductsComponent] Servidor offline');
+            return of([]);
+          })
+        );
     });
-  }
-
-  cargarProductos(slugCategoria: string) {
-    console.log('PIDIENDO AL BACKEND PRODUCTOS DE:', slugCategoria);
-    // Tu servicio va acá...
   }
 }

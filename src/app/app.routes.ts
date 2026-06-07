@@ -15,7 +15,7 @@ export const routes: Routes = [
         component: PublicLayoutComponent,
         children: [
             { path: '', component: HomeComponentUser },
-            { path: 'productos/**', component: ResultFilterComponent }
+            { path: 'productos/:categoria', component: ResultFilterComponent }
         ]
     },
     {
@@ -23,7 +23,8 @@ export const routes: Routes = [
         children:[
             {path: '',component:HomeComponent},
             {path:'loadProduct',component:LoadProductComponent},
-            {path:'addCategory',component:AddCategoryComponent}
+            {path:'addCategory',component:AddCategoryComponent},
+            {path: 'productos/:categoria', component: ResultFilterComponent }
         ]
 
     },

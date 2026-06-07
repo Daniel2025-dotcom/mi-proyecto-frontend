@@ -1,17 +1,17 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router'; // <--- Importante para routerLink
+import { RouterModule } from '@angular/router';
 import { Category } from '../../../services/hostinger/categoryService';
 
 @Component({
   selector: 'app-menu-nodes',
   standalone: true,
-  imports: [CommonModule, RouterModule], // <--- Agregado aquí
+  imports: [CommonModule, RouterModule],
   styleUrls: ['./buttonCategory.css'], 
   template: `
     <li *ngFor="let cat of nodes" class="menu-item">
       <div class="item-content">
-        <a [routerLink]="['/productos', limpiarUrl(cat.nombre)]">
+        <a [routerLink]="['productos', limpiarUrl(cat.nombre)]" [queryParams]="{ id: cat.id }">
           {{ cat.nombre }}
         </a>
         <span class="material-symbols-outlined" *ngIf="cat.hijos && cat.hijos.length > 0">arrow_right</span>

@@ -1,67 +1,13 @@
-.layoutResultFilter{
-    background: rgb(242, 242, 242);
-    display: flex;
-    gap:5px;
-    flex-direction: column;
-    align-items: center;
-    height: 100%;
-}
-p{
-    padding-left: 5px;
-    padding-top: 5px;
-    margin: 0px;
-}
-
-.contentBanner{
-    height: 10rem;
-    width: 62.5rem;
-}
-img{
-    display: block;
-    width: 100%;
-    height: 100%;
-
-
-}
-
-.urlx{
-    display: flex;
-    align-items:flex-start;
-    width: 62.5rem;
-}
-
-.layoutModelView{
-    background: forestgreen;
-    width: 62.5rem;
-    height: 100%;
-    display: flex;
-}
-.filterView{
-    background: gold;
-    display: flex;
-    flex: 4;
-    flex-direction: column;
-    
-}
-.contentData{
-    display: flex;
-    flex-direction: column;
-    flex: 16.45;
-}
-.dataInfo{
-    background: red;
-    width: 100%;
-    display: flex;
-    justify-content:space-between
-}
 .products {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem;
     padding: 0.5rem;
+    justify-items: stretch;
 }
-.producto {
-    background: white;
-    border: 3px solid rgb(227, 227, 227);
-    min-height: 250px;
+.general{
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
 }
+

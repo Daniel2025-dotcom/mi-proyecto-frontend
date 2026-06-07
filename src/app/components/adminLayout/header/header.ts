@@ -3,12 +3,13 @@ import { SearchComponent } from '../../adminLayout/header/search/serach';
 import { RouterModule } from '@angular/router';
 import { PdfService } from '../../../services/hostinger/pdfservice';
 import { inject } from '@angular/core';
+import { ButtonCategoryComponent } from '../../componentsGeneral/buttonCategory/buttonCategory';
 @Component({
   selector: 'app-header',
   standalone: true,
   templateUrl: './header.html',
   styleUrls: ['./header.css'],
-  imports: [SearchComponent, RouterModule],
+  imports: [SearchComponent, RouterModule, ButtonCategoryComponent],
 })
 export class HeaderCompoent {
   private pdfService: PdfService = inject(PdfService);

@@ -1,86 +1,54 @@
 <div class="header">
     <div class="headerTop">
         <div class="unico">
-        <div class="Navi" id="logoEmail">
-        <span class="material-symbols-outlined"> document_scanner</span>
-        <p>www.mybuisness.com.ar</p>
+            <div class="Navi" id="logoEmail">
+                <span class="material-symbols-outlined">document_scanner</span>
+                <p>www.mybuisness.com.ar</p>
+            </div>
+            <div class="Navi" id="contact">
+                <span class="material-symbols-outlined">mail</span>
+                <p>contact@mybuisness.com.ar</p>
+            </div>
         </div>
-        <div class="Navi" id="contact">
-        <span class="material-symbols-outlined"> mail</span>
-        <p>contact@mybuisness.com.ar</p>
     </div>
-    </div>
-    </div>
+
     <div class="headerMid">
         <div class="left">
-        <button>
-            <a routerLink="/admin">
-            <img src="/assets/0704235.jpg" alt="logoBuisness">
-        </a>
-        </button>
+            <button>
+                <a routerLink="/admin">
+                    <img src="/assets/0704235.jpg" alt="logoBuisness">
+                </a>
+            </button>
         </div>
 
         <div class="center">
-        <app-search></app-search>
+            <app-search></app-search>
         </div>
 
         <div class="right" id="LayoutButtons">
-
             <button class="buttonCP">
                 <span class="material-symbols-outlined">account_circle</span>
                 <span id="spanSpecial">Name User</span>
-        </button>
+            </button>
         </div>
     </div>
+
     <div class="headerDown">
         <div id="layoutCategory">
-        <button id="specialButton">
-            <div>
-            <span class="material-symbols-outlined">menu</span>
-            <span>Categorias</span>
-            </div>
-            <div>
-            <span class="material-symbols-outlined">arrow_drop_down</span>
-            </div>
-        </button>
-         <div class="menu">
-            <div class="menuTitle">
-                <a routerLink="/celulares">
-                <button>Marroquinería
-                    <span class="material-symbols-outlined">arrow_right</span>
-                </button>
-                </a>
-            <button>Vitrofusión:
-                <span class="material-symbols-outlined">arrow_right</span>
-            </button>
-            <button>Textil
-                <span class="material-symbols-outlined">arrow_right</span>
-            </button>
-            <button>Carpinteria
-                <span class="material-symbols-outlined">arrow_right</span>
-            </button>
-            <button>Otros
-                <span class="material-symbols-outlined">arrow_right</span>
-            </button>
-            </div>
-            <div class="showMore">
-                <h1>hola mundo</h1>
-            </div>
-         </div>
-    </div>
-    <div id="layoutFeatures">
+            <app-button-category></app-button-category>
+        </div>
+        <div id="layoutFeatures">
             <a routerLink="/admin">Principal</a>
             <a routerLink="loadProduct">Agregar Producto</a>
-            <a (click)="generarPdf()" class="link-button">Generar PDF</a>
+            <a (click)="generarPdf()" class="link-button">Generar PDF</a> 
             <a routerLink="addCategory">Agregar Rubro</a>
-    </div>
-    <div id="layoutSucursal">
-        <button>
-            <span class="material-symbols-outlined">Manage_Accounts</span>
-            <span>Admin</span>
-            <span class="material-symbols-outlined">arrow_drop_down</span>
-        </button>
-    </div>
-    </div>
+        </div>
+        <div id="layoutSucursal">
+            <button>
+                <span class="material-symbols-outlined">Manage_Accounts</span>
+                <span>Admin</span>
+                <span class="material-symbols-outlined">arrow_drop_down</span>
+            </button>
+        </div>
+    </div> 
 </div>
-

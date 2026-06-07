@@ -10,7 +10,7 @@ export interface CardProductDto {
   name: string;
   price: number;
 }
-export interface ProductByCategoryRequestDTO {
+export interface ProductByCategoryRequestDTO{
   id: number;
 }
 
@@ -29,10 +29,10 @@ export class ProductService {
     return this.http.get<CardProductDto[]>(this.apiUrl + '/getProducts', { headers });
   }
 
-    getProductsByCategory(categoryId: ProductByCategoryRequestDTO): Observable<ProductDto[]> {
+    getProductsByCategory(categoryId: ProductByCategoryRequestDTO): Observable<CardProductDto[]> {
       const headers = new HttpHeaders({
         'ngrok-skip-browser-warning': 'true'
       });
-    return this.http.post<ProductDto[]>( `${this.apiUrl}/getProductsByCategory`, categoryId , { headers });
+    return this.http.post<CardProductDto[]>( `${this.apiUrl}/getProductsByCategory`, categoryId , { headers });
   }
 }
