@@ -1,3 +1,6 @@
+.link-button {
+    visibility: hidden;
+}
 .header {
   display: flex;
   flex-direction: column;
