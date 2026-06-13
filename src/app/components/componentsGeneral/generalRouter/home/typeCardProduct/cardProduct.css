@@ -97,7 +97,7 @@
 }
 .btn-modify {
   background-color: #edf2f7;
-  color: #4a5568;
+  color: rgb(0, 152, 10);
 }
 
 .btn-modify:hover {
@@ -113,4 +113,9 @@
 .btn-delete:hover {
   background-color: #fed7d7;
   color: #c53030;
+}
+
+.btn-consult {
+  background-color: rgb(134, 255, 142);
+  color: #2d3748;
 }

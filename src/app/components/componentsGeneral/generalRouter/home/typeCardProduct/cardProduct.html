@@ -1,0 +1,25 @@
+<div class="card-product">
+  <div class="image-container">
+    <img [src]="dateProducts.url || 'https://placehold.co/200'" [alt]="dateProducts.name" alt="Imagen del producto">
+  </div>
+
+  <div class="info">
+    <h3>{{ dateProducts.name }}</h3>
+    <span class="price">${{ dateProducts.price }}</span>
+
+    <div class="actions">
+      @if (isAdmin) {
+        <button class="btn btn-modify" (click)="onModify()">
+          Modificar
+        </button>
+        <button class="btn btn-delete" (click)="onDelete()">
+          Eliminar
+        </button>
+      } @else {
+        <button class="btn btn-consult" (click)="onConsult()">
+          Consultar Por este Producto
+        </button>
+      }
+    </div>
+  </div>
+</div>

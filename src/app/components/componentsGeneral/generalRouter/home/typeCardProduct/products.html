@@ -1,0 +1,15 @@
+<div class="general">
+    <div class="products">
+        @if (products$ | async; as products) {
+            @for (item of products; track item.id) {
+                <app-cardProduct 
+                    [dateProducts]="item"
+                    [isAdmin]="isAdminList"
+                    (modify)="handleModify($event)"
+                    (delete)="handleDelete($event)"
+                    (consult)="handleConsult($event)">
+                </app-cardProduct>
+            }
+        }
+    </div>
+</div>

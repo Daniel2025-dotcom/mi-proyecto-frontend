@@ -1,5 +1,5 @@
 import { Component, inject } from "@angular/core";
-import { LoginService, LoginUserDto } from "../../services/hostinger/loginSerivece";
+import { LoginService, LoginUserDto } from "../../../services/hostinger/loginSerivece";
 import { FormBuilder, Validators, ReactiveFormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
 

@@ -13,9 +13,15 @@
     </div>
 
     <div class="headerMid">
+        <button class="mobile-menu-btn" (click)="toggleMenu()">
+            <span class="material-symbols-outlined">
+                {{ menuAbierto ? 'close' : 'menu' }}
+            </span>
+        </button>
+
         <div class="left">
             <button>
-                <a routerLink="/admin">
+                <a [routerLink]="isAdmin ? '/admin' : '/'">
                     <img src="/assets/0704235.jpg" alt="logoBuisness">
                 </a>
             </button>
@@ -28,27 +34,38 @@
         <div class="right" id="LayoutButtons">
             <button class="buttonCP">
                 <span class="material-symbols-outlined">account_circle</span>
-                <span id="spanSpecial">Name User</span>
+                <span id="spanSpecial">{{ userName }}</span>
             </button>
         </div>
     </div>
 
-    <div class="headerDown">
+    <div class="headerDown" [class.active]="menuAbierto">
         <div id="layoutCategory">
             <app-button-category></app-button-category>
         </div>
+        
         <div id="layoutFeatures">
-            <a routerLink="/admin">Principal</a>
-            <a routerLink="loadProduct">Agregar Producto</a>
-            <a (click)="generarPdf()" class="link-button">Generar PDF</a> 
-            <a routerLink="addCategory">Agregar Rubro</a>
+            @if (isAdmin) {
+                <a routerLink="/admin" (click)="closeMenu()">Principal</a>
+                <a routerLink="loadProduct" (click)="closeMenu()">Agregar Producto</a>
+                <a (click)="generarPdf(); closeMenu()" class="link-button">Generar PDF</a> 
+                <a routerLink="addCategory" (click)="closeMenu()">Agregar Rubro</a>
+            } @else {
+                <a routerLink="/" (click)="closeMenu()">Principal</a>
+                <a routerLink="/" class="link-button" (click)="closeMenu()">Oferta 1</a>
+                <a routerLink="/" class="link-button" (click)="closeMenu()">Oferta 2</a>
+                <a routerLink="/" class="link-button" (click)="closeMenu()">Oferta 3</a>
+            }
         </div>
+        
         <div id="layoutSucursal">
-            <button>
-                <span class="material-symbols-outlined">Manage_Accounts</span>
-                <span>Admin</span>
-                <span class="material-symbols-outlined">arrow_drop_down</span>
-            </button>
+            @if (isAdmin) {
+                <button>
+                    <span class="material-symbols-outlined">Manage_Accounts</span>
+                    <span>Admin</span>
+                    <span class="material-symbols-outlined">arrow_drop_down</span>
+                </button>
+            }
         </div>
     </div> 
 </div>

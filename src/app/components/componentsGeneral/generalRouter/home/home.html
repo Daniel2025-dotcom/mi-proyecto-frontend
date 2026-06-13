@@ -1,12 +1,12 @@
 <div class="general">
-        <div class="banner">
-            <app-banner></app-banner>
-        </div>
+    <div class="banner">
+        <app-banner></app-banner>
+    </div>
     <div class="background">
         <div class="layoutContentCatalog">
             <h2>Productos Destacados</h2>
             <div class="TemplateProducts">
-                <app-products></app-products>
+                <app-products [isAdminList]="isAdminHome"></app-products>
             </div>
         </div>
     </div>

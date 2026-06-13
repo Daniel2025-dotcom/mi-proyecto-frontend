@@ -1,0 +1,17 @@
+<div class="general">
+    <div class="products">
+        @if (products$ | async; as products) {
+            @for (item of products; track item.id) {
+                <app-cardProduct 
+                    [dateProducts]="item"
+                    [isAdmin]="isAdmin"
+                    (modify)="handleModify($event)"
+                    (delete)="handleDelete($event)"
+                    (consult)="handleConsult($event)">
+                </app-cardProduct>
+            } @empty {
+                <p class="no-products">No hay productos en esta categoría.</p>
+            }
+        }
+    </div>
+</div>

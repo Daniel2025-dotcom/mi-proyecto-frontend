@@ -1,18 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, inject, input, Input } from '@angular/core';
 import { SearchComponent } from '../../adminLayout/header/search/serach';
 import { RouterModule } from '@angular/router';
 import { PdfService } from '../../../services/hostinger/pdfservice';
-import { inject } from '@angular/core';
 import { ButtonCategoryComponent } from '../../componentsGeneral/buttonCategory/buttonCategory';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-header',
   standalone: true,
   templateUrl: './header.html',
   styleUrls: ['./header.css'],
-  imports: [SearchComponent, RouterModule, ButtonCategoryComponent],
+  imports: [SearchComponent, RouterModule, ButtonCategoryComponent, CommonModule],
 })
 export class HeaderCompoent {
   private pdfService: PdfService = inject(PdfService);
+
+  @Input() isAdmin: boolean = false;
+  @Input() userName: string = 'Invitado';
+
+  menuAbierto: boolean = false;
+
+  toggleMenu(): void {
+    this.menuAbierto = !this.menuAbierto;
+  }
+
+  closeMenu(): void {
+    this.menuAbierto = false;
+  }
 
   generarPdf(): void {
     this.pdfService.downloadCatalogPdf().subscribe({
