@@ -11,10 +11,7 @@ export class PdfService {
   private apiUrl = environment.apiUrl + '/admin/catalog/pdf';
 
   downloadCatalogPdf(): Observable<Blob> {
-    const headers = new HttpHeaders({
-      'ngrok-skip-browser-warning': 'true'
-    });
 
-    return this.http.get(this.apiUrl, { headers, responseType: 'blob' });
+    return this.http.get(this.apiUrl, {responseType: 'blob' });
   }
 }

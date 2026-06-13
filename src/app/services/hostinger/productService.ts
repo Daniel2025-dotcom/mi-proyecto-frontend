@@ -23,16 +23,11 @@ export class ProductService {
   private apiUrl = environment.apiUrl + '/Products';
 
   getProducts(): Observable<CardProductDto[]> {
-    const headers = new HttpHeaders({
-      'ngrok-skip-browser-warning': 'true'
-    });
-    return this.http.get<CardProductDto[]>(this.apiUrl + '/getProducts', { headers });
+
+    return this.http.get<CardProductDto[]>(this.apiUrl + '/getProducts');
   }
 
     getProductsByCategory(categoryId: ProductByCategoryRequestDTO): Observable<CardProductDto[]> {
-      const headers = new HttpHeaders({
-        'ngrok-skip-browser-warning': 'true'
-      });
-    return this.http.post<CardProductDto[]>( `${this.apiUrl}/getProductsByCategory`, categoryId , { headers });
+    return this.http.post<CardProductDto[]>( `${this.apiUrl}/getProductsByCategory`, categoryId);
   }
 }

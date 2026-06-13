@@ -29,22 +29,16 @@ export class CategoryService {
   private http = inject(HttpClient); 
   private apiUrl = environment.apiUrl + '/admin';
 
-  // Creamos una función auxiliar privada para no repetir la creación de headers en cada método
-  private getNgrokHeaders(): HttpHeaders {
-    return new HttpHeaders({
-      'ngrok-skip-browser-warning': 'true'
-    });
-  }
-
   getCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(`${this.apiUrl}/categories`, { headers: this.getNgrokHeaders() });
+    return this.http.get<Category[]>(`${this.apiUrl}/categories`);
   }
 
   createCategory(categoryDto: CategoryDto): Observable<void> {
-    return this.http.post<void>(`${this.apiUrl}/category`, categoryDto, { headers: this.getNgrokHeaders() });
+    return this.http.post<void>(`${this.apiUrl}/category`, categoryDto);
   }
 
   createProduct(productDto: ProductDto): Observable<string> {
-    return this.http.post<string>(`${this.apiUrl}/loadProduct`, productDto, { headers: this.getNgrokHeaders() });
+    return this.http.post<string>(`${this.apiUrl}/loadProduct`, productDto);
   }
+
 }

@@ -19,9 +19,6 @@ export class LoginService {
   private apiUrl = environment.apiUrl + '/login';
 
   userValidator(loginUserDto: LoginUserDto): Observable<LoginResponseDto> {
-    const headers = new HttpHeaders({
-      'ngrok-skip-browser-warning': 'true'
-    });
-    return this.http.post<LoginResponseDto>(`${this.apiUrl}/validator`, loginUserDto, { headers });
+    return this.http.post<LoginResponseDto>(`${this.apiUrl}/validator`, loginUserDto);
   }
 }
