@@ -1,10 +1,10 @@
 import { Component, inject, OnInit, Input } from '@angular/core';
 import { CommonModule, AsyncPipe } from '@angular/common';
 import { ProductService, CardProductDto } from '../../../../../services/hostinger/productService';
-import { Observable, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Observable, of, combineLatest } from 'rxjs';
+import { catchError, map, startWith } from 'rxjs/operators';
 import { CardProductComponent } from './cardProduct';
-
+import { SearchService } from '../../../../../services/hostinger/searchService';
 @Component({
   selector: 'app-products',
   standalone: true,
@@ -14,15 +14,33 @@ import { CardProductComponent } from './cardProduct';
 })
 export class ProductsComponent implements OnInit {
   private productService = inject(ProductService);
+  private searchService = inject(SearchService);
+
+
   products$!: Observable<CardProductDto[]>;
 
   @Input() isAdminList: boolean = false;
 
   ngOnInit(): void {
-    this.products$ = this.productService.getProducts().pipe(
+    const backendProducts$ = this.productService.getProducts().pipe(
       catchError(err => {
         console.warn('[ProductsComponent] Servidor offline', err);
         return of([]);
+      })
+    );
+
+    const searchTerm$ = this.searchService.getSearchTerm().pipe(
+      startWith('')
+    );
+    this.products$ = combineLatest([backendProducts$, searchTerm$]).pipe(
+      map(([products, term]) => {
+        if (!term) {
+          return products;
+        }
+        const cleanTerm = term.toLowerCase();
+        return products.filter(product => 
+          product.name.toLowerCase().includes(cleanTerm)
+        );
       })
     );
   }
@@ -32,7 +50,14 @@ export class ProductsComponent implements OnInit {
   }
 
   handleDelete(product: CardProductDto): void {
-    alert(`Eliminando: ${product.name}`);
+    this.productService.deleteProduct(product.id).subscribe({
+      next: (response) => {
+        alert(`Producto eliminado: ${response}`);
+      },
+      error: (err) => {
+        alert('Error al eliminar el producto. Intente nuevamente.');
+      }
+    });
   }
 
   handleConsult(product: CardProductDto): void {

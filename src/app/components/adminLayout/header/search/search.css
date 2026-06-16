@@ -10,7 +10,7 @@
 }
 h1,p{
     margin: 0px;
-} /* el h1 no se aplico al componente interno , ojo*/
+}
 #layoutSearch input {
     background: transparent;
     border: none;

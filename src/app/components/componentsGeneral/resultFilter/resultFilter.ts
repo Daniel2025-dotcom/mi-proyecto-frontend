@@ -2,9 +2,10 @@ import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule, AsyncPipe } from '@angular/common';
 import { CardProductDto, ProductService, ProductByCategoryRequestDTO } from '../../../services/hostinger/productService';
-import { Observable, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Observable, of,combineLatest} from 'rxjs';
+import { catchError ,startWith,map } from 'rxjs/operators';
 import { CardProductComponent } from '../generalRouter/home/typeCardProduct/cardProduct';
+import { SearchService } from '../../../services/hostinger/searchService';
 
 @Component({
   selector: 'app-result-filter',
@@ -17,8 +18,10 @@ export class ResultFilterComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private router = inject(Router); 
   private productService = inject(ProductService);
+  private searchService = inject(SearchService);
   products$!: Observable<CardProductDto[]>;
   isAdmin: boolean = false;
+
   ngOnInit(): void {
     this.isAdmin = this.router.url.includes('/admin');
     this.route.queryParams.subscribe(params => {
@@ -28,7 +31,7 @@ export class ResultFilterComponent implements OnInit {
         id: parseInt(categoryId)
       };
 
-      this.products$ = this.productService
+      const backendProducts$ = this.productService
         .getProductsByCategory(requestId)
         .pipe(
           catchError(err => {
@@ -36,6 +39,20 @@ export class ResultFilterComponent implements OnInit {
             return of([]);
           })
         );
+      const searchTerm$ = this.searchService.getSearchTerm().pipe(
+              startWith('')
+            );
+       this.products$ = combineLatest([backendProducts$, searchTerm$]).pipe(
+            map(([products, term]) => {
+              if (!term) {
+                return products;
+              }
+              const cleanTerm = term.toLowerCase();
+              return products.filter(product => 
+                product.name.toLowerCase().includes(cleanTerm)
+              );
+            })
+          );
     });
   }
   handleModify(product: CardProductDto): void {

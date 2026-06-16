@@ -16,14 +16,12 @@ export class MainLayoutComponent implements OnInit {
   userName: string = 'Invitado';
 
   ngOnInit(): void {
-    // Al igual que en los filtros, si la URL tiene '/admin', activamos el modo admin
     this.isAdmin = this.router.url.includes('/admin');
 
-    // Opcional: Podés ajustar el nombre dinámicamente si es admin o usuario
     if (this.isAdmin) {
       this.userName = 'Gerbacio Admin';
     } else {
-      this.userName = 'Cliente'; // O sacarlo de un servicio de auth más adelante
+      this.userName = 'Cliente';
     }
   }
 }

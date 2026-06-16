@@ -15,7 +15,6 @@ export class HomeComponent implements OnInit {
     isAdminHome: boolean = false;
 
     ngOnInit(): void {
-        // Detecta si este home se abrió dentro de las rutas de /admin
         this.isAdminHome = this.router.url.includes('/admin');
     }
 }
