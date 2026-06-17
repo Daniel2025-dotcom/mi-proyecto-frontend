@@ -1,11 +1,12 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject,PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CommonModule, AsyncPipe } from '@angular/common';
+import { CommonModule, AsyncPipe ,isPlatformBrowser} from '@angular/common';
 import { CardProductDto, ProductService, ProductByCategoryRequestDTO } from '../../../services/hostinger/productService';
 import { Observable, of,combineLatest} from 'rxjs';
-import { catchError ,startWith,map } from 'rxjs/operators';
+import { catchError ,startWith,map} from 'rxjs/operators';
 import { CardProductComponent } from '../generalRouter/home/typeCardProduct/cardProduct';
 import { SearchService } from '../../../services/hostinger/searchService';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-result-filter',
@@ -19,6 +20,7 @@ export class ResultFilterComponent implements OnInit {
   private router = inject(Router); 
   private productService = inject(ProductService);
   private searchService = inject(SearchService);
+  private platformId = inject(PLATFORM_ID);
   products$!: Observable<CardProductDto[]>;
   isAdmin: boolean = false;
 
@@ -39,9 +41,18 @@ export class ResultFilterComponent implements OnInit {
             return of([]);
           })
         );
-      const searchTerm$ = this.searchService.getSearchTerm().pipe(
-              startWith('')
-            );
+      const isBrowser = isPlatformBrowser(this.platformId);
+      let searchTerm$: Observable<string>;
+      if (isBrowser) { //el error era por que en pre-render el serve se queda esperando a que termine el servicio , pero en este caso nunca acaba es infito ,se queda escuchando el teclado
+      searchTerm$ = this.searchService.getSearchTerm().pipe( 
+        startWith('')
+      );
+       } else {
+      searchTerm$ = this.searchService.getSearchTerm().pipe(
+        startWith(''),
+        take(1)
+      );
+    }
        this.products$ = combineLatest([backendProducts$, searchTerm$]).pipe(
             map(([products, term]) => {
               if (!term) {
