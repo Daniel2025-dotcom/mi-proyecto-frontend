@@ -9,8 +9,8 @@
 
     <div class="actions">
       @if (isAdmin) {
-        <button class="btn btn-modify" (click)="onModify()">
-          Modificar
+        <button class="btn btn-modify">
+           <a [routerLink]="['/admin/modificar-producto', dateProducts.id]">Modificar</a>
         </button>
         <button class="btn btn-delete" (click)="onDelete()">
           Eliminar

@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { environment } from '../../../../../environment/environment.prod';
 import { CardProductDto } from '../../../../../services/hostinger/productService';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 export interface TemplateEmail{
     nameProduct: string;
     pathCategory: string;    
@@ -9,7 +10,7 @@ export interface TemplateEmail{
 @Component({
   selector: 'app-cardProduct',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,RouterLink],
   templateUrl: './cardProduct.html',
   styleUrls: ['./cardProduct.css']
 })

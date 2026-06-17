@@ -25,7 +25,9 @@ export const routes: Routes = [
             { path: '', component: HomeComponent },
             { path: 'loadProduct', component: LoadProductComponent },
             { path: 'addCategory', component: AddCategoryComponent },
-            { path: 'productos/:categoria', component: ResultFilterComponent }
+            { path: 'productos/:categoria', component: ResultFilterComponent },
+            { path: 'modificar-producto/:id',component: LoadProductComponent,data: { isMod: true }
+  }
         ]
     },
     {

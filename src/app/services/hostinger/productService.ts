@@ -12,8 +12,14 @@ export interface CardProductDto {
 export interface ProductByCategoryRequestDTO{
   id: number;
 }
-
-
+export interface ProductResponseDTO {
+    name:string;
+    description:string;
+    price:number;
+    url:string;
+    categoryId:number;
+    path:string;
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -33,5 +39,8 @@ export class ProductService {
   deleteProduct(id: number): Observable<string> {
     return this.http.post(`${this.adminUrl}/deleteProduct`, { id: id }, { responseType: 'text' }
     );
+  }
+  getProductById(ProductId:ProductByCategoryRequestDTO): Observable<ProductResponseDTO> {
+    return this.http.post<ProductResponseDTO>(`${this.apiUrl}/getProductById`,ProductId);
   }
 }

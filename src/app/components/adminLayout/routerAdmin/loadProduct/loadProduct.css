@@ -208,6 +208,10 @@ textarea{
 #special{
     margin-top: 15px;
 }
+.actions .btnCancel{
+    background: red;
+    margin-right: 7px;
+}
 
 @keyframes spin{
     from{

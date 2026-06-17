@@ -1,8 +1,13 @@
 <div class="general">
   <div class="layoutTemplate">
     <div class="headerForm">
+      @if (isMod) {
+      <h2>Modificacion de Producto</h2>
+      <p>Modifica caracteristicas  del producto</p>
+      }@else {
       <h2>Carga de Producto</h2>
       <p>Completá la información del producto</p>
+      }
     </div>
     <form [formGroup]="form">
       <div class="gridForm">
@@ -80,7 +85,11 @@
           </div>
             <div class="uploadActions">
               <label class="customFileInput" for="imagen">
-                Seleccionar Imagen
+                @if(isMod){
+                Cambiar Imagen
+                }@else {
+                  Seleccionar Imagen
+                }
               </label>
               <input
                 id="imagen"
@@ -94,8 +103,18 @@
           </div>
         </div>
       <div class="actions">
+        @if(isMod){
+          <button class="btnCancel">
+            Cancelar Cambios
+          </button>
+        }
+
         <button (click)="handleSubmit()">
+          @if(isMod){
+            Guardar Cambios
+          }@else{
           Guardar Producto
+          }
         </button>
       </div>
     </form>
