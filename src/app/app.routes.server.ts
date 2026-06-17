@@ -2,6 +2,10 @@ import { RenderMode, ServerRoute } from '@angular/ssr';
 
 export const serverRoutes: ServerRoute[] = [
   {
+    path: 'admin/modificar-producto/:id',
+    renderMode: RenderMode.Server
+  },
+  {
     path: 'productos/:categoria',
     renderMode: RenderMode.Server 
   },
