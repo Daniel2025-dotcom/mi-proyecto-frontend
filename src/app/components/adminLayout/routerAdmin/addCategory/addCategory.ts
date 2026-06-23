@@ -56,7 +56,7 @@ export class AddCategoryComponent implements OnInit {
     this.categoryService.createCategory(categoryDto).subscribe({
       next: (res) => {
         console.log("creado", res);
-        alert("Categoría creada exitantemente");
+        alert("Categoría creada exitosamente");
       },
       error: (err) => {
         console.error(err);
