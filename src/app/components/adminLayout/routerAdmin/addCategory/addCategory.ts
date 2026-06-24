@@ -57,7 +57,7 @@ export class AddCategoryComponent implements OnInit {
       next: (res) => {
         console.log("creado", res);
         alert("Categoría creada exitosamente");
-        window.location.reload;
+        window.location.reload();
       },
       error: (err) => {
         console.error(err);
