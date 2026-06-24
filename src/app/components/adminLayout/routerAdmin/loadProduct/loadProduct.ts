@@ -105,12 +105,19 @@ export class LoadProductComponent implements OnInit {
     };
 
     if (this.isMod) {
-  
       
-      // EJEMPLO de cómo deberías llamarlo si tienes el método:
-      // this.productService.updateProduct(this.productId!, productDto).subscribe({...})
-      
-      alert("Lógica de edición ejecutada (Asegúrate de vincular tu endpoint de actualización)");
+      if (!this.productId) return;
+      console.log(this.productId,productDto);
+
+    this.productService.modifyProduct(this.productId, productDto).subscribe({
+      next: (mensaje) => {
+        alert(mensaje);
+      },
+      error: (err) => {
+        console.error(err);
+        alert("Algo salió mal al intentar modificar el producto");
+      }
+    });
     } else {
       this.categoryService.createProduct(productDto).subscribe({
         next: () => {

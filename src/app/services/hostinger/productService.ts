@@ -20,6 +20,14 @@ export interface ProductResponseDTO {
     categoryId:number;
     path:string;
 }
+
+export interface ProductRequestDTO {
+    name:string;
+    description:string;
+    price:number;
+    url:string;
+    categoryId:number;
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -43,4 +51,8 @@ export class ProductService {
   getProductById(ProductId:ProductByCategoryRequestDTO): Observable<ProductResponseDTO> {
     return this.http.post<ProductResponseDTO>(`${this.apiUrl}/getProductById`,ProductId);
   }
+
+modifyProduct(id: number, dto: ProductRequestDTO): Observable<string> {
+  return this.http.post<string>(`${this.apiUrl}/modifyProduct?id=${id}`, dto, { responseType: 'text' as 'json' });
+}
 }

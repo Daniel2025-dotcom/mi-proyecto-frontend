@@ -1,8 +1,17 @@
 <div class="banner">
-  <button class="nav-btn left" (click)="previus()">
+  <button class="nav-btn left" (click)="previous()">
     ❮
   </button>
-  <img [src]="imgs[currentIndex]" alt="Banner">
+  
+  <div class="carousel-container">
+    @for (img of imgs; track $index) {
+      <img 
+        [src]="img" 
+        alt="Banner" 
+        [class.active]="$index === currentIndex">
+    }
+  </div>
+
   <button class="nav-btn right" (click)="next()">
     ❯
   </button>

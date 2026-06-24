@@ -1,4 +1,5 @@
-import { Component } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { interval, Subscription } from "rxjs"; // Importamos herramientas de RxJS
 
 @Component({
     selector: "app-banner",
@@ -6,24 +7,34 @@ import { Component } from "@angular/core";
     styleUrls: ["./banner.css"],
     standalone: true
 })
-export class BannerComponent {
+export class BannerComponent implements OnInit, OnDestroy {
     imgs: string[] = [
-    '/assets/carlosSoto.jpg',
-    '/assets/wp12796710.jpg',
-    '/assets/banner.jpg',
-  ];
+        '/assets/carlosSoto.jpg',
+        '/assets/wp12796710.jpg',
+        '/assets/banner.jpg',
+    ];
+    currentIndex = 0;
+    private timerSubscription!: Subscription; // Guardamos la suscripción
 
-   currentIndex = 0;
+    ngOnInit(): void {
+        // Crea un contador que emite cada 3000ms
+        this.timerSubscription = interval(3000).subscribe(() => {
+            this.next();
+        });
+    }
 
-  previus(): void {
-    this.currentIndex =
-      (this.currentIndex + 1) % this.imgs.length;
-  }
+    ngOnDestroy(): void {
+        // Nos desuscribimos para evitar fugas de memoria (memory leaks)
+        if (this.timerSubscription) {
+            this.timerSubscription.unsubscribe();
+        }
+    }
 
-  next(): void {
-    this.currentIndex =
-      (this.currentIndex - 1 + this.imgs.length)
-      % this.imgs.length;
-  }
-    
+    previous(): void {
+        this.currentIndex = (this.currentIndex - 1 + this.imgs.length) % this.imgs.length;
+    }
+
+    next(): void {
+        this.currentIndex = (this.currentIndex + 1) % this.imgs.length;
+    }
 }
